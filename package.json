@@ -19,6 +19,9 @@
   },
   "main": "src/javascripts/index.js",
   "browser": "src/javascripts",
+  "browserslist": [
+    "extends @nice-digital/browserslist-config"
+  ],
   "scripts": {
     "start": "grunt --color --timing",
     "dist": "grunt dist --color",
@@ -45,6 +48,7 @@
   ],
   "license": "MIT",
   "devDependencies": {
+    "@nice-digital/browserslist-config": "^1.0.0",
     "autoprefixer": "^6.5.1",
     "babel-core": "^6.10.4",
     "babel-eslint": "^7.0.0",
