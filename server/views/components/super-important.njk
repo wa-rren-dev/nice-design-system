@@ -1,0 +1,11 @@
+{% extends "layouts/_layout.njk" %}
+{% set title = "Super Important" %}
+{% from "super-important/super-important.njk" import superImportant %}
+{% block body %}
+
+	<div class="container">
+		<h1>Super important</h1>
+		<p>Here is a little bit of {{superImportant({text: "super important text"})}} that we can't do without, along with some {{superImportant({text: "ultra, super important text", ultra: true})}} as well.</p>
+	</div>
+
+{% endblock %}

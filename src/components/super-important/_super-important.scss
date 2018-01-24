@@ -1,0 +1,19 @@
+////
+/// @group components
+////
+
+/// Warren experimenting with building a useless component
+///
+/// BEM elements:
+///   - `__super_important`   The <strong> around the text selection
+///   - `--ultra` for when it's really, really important
+///
+/// @since 0.1.0 todo: how is this decided?
+.super-important {
+  color: blue;
+  @include font-size(0);
+  &--ultra {
+    @include font-size(4);
+    color: red;
+  }
+}
