@@ -45,5 +45,5 @@ describe("superImportant", function() {
 
 // questions:
 // why won't my renderComponent work?! (line 21)
-// how is JSDOM putting the components in it's virtual page?
+// how is JSDOM putting the this individual component in it's virtual page?
 // what is line 40 proving?
