@@ -33,3 +33,4 @@ bower_components
 temp
 # VScode
 /.vscode/settings.json
+.eslintrc.js
