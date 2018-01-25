@@ -11,7 +11,7 @@ describe("superImportant", function(){
 		// 	text: "Here is some text",
 		// 	ultra: true,
 		// });
-		$("body").html = `<strong data-superimportant="" class="super-important">super important text</strong>`;
+		$("body").html(`<p><strong data-superimportant="" class="super-important">super important text</strong></p>`);
 	});
 
 	var sandbox;
