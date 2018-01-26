@@ -26,28 +26,40 @@ export default class SuperImportant {
 		this.options = Object.assign({}, options);
 
 		// if it is set to ultra
-		if (this.options.hasOwnProperty("ultra")) {
+		if (this.options.ultra) {
 			// when the window scrolls, spin the element by the scroll position
 			// $(window).on("scroll", this._scrollSpin(this.$el));
-			$(window).on("scroll", ()=>{
-				this._applySpinStyling(this.$el);
-			});
+			$(window).on("scroll.superimportant", $.proxy(this._handleScroll, this));
+		} else {
+			return;
 		}
 	}
+
+	/**
+	 *
+	 * @function
+	 * @memberof SuperImportant
+	 */
+	_handleScroll() {
+		this._applySpinStyling(this._calculateDegrees(window.scrollY));
+	}
+
 	/**
 	 * Apply the spin styling to the element
 	 * @function
-	 * @type {HTMLElement} $el
+	 * @argument number degrees
 	 * @memberof SuperImportant
 	 */
-	_applySpinStyling($el){
-		// set up the styles for the current spin
-		const styles = {
-			display: "inline-block",
-			transform: `rotate(${this._calculateDegrees()}deg)`
-		};
+	_applySpinStyling(degrees){
 		// apply the styles
-		$el.css(styles);
+		this.$el.css(this._getStyles(degrees));
+	}
+
+	_getStyles(degrees) {
+		return {
+			display: "inline-block",
+			transform: `rotate(${degrees}deg)`
+		};
 	}
 
 	/**
@@ -56,8 +68,8 @@ export default class SuperImportant {
 	 * @returns {number} Calculated rotation
 	 * @memberof SuperImportant
 	 */
-	_calculateDegrees(){
-		return window.scrollY % 359;
+	_calculateDegrees(scroll){
+		return scroll % 360;
 	}
 }
 

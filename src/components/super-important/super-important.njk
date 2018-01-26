@@ -1,5 +1,5 @@
 {% macro superImportant(content) %}
 
-<strong data-superimportant {% if content.ultra %}data-superimportant-ultra{% endif %} class="super-important {% if content.ultra %}super-important--ultra{% endif %}">{{content.text}}</strong>
+<strong data-superimportant {% if content.ultra %}data-superimportant-ultra="true"{% endif %} class="super-important {% if content.ultra %}super-important--ultra{% endif %}">{{content.text}}</strong>
 
 {% endmacro %}
