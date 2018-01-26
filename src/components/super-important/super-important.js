@@ -8,12 +8,12 @@ import pluginizr from "../../javascripts/pluginizr";
  * @class SuperImportant
  */
 export default class SuperImportant {
-/**
- * Creates an instance of SuperImportant.
- * @type {HTMLElement} element
- * @param {object} options
- * @memberof SuperImportant
- */
+	/**
+	 * Creates an instance of SuperImportant.
+	 * @param {HTMLElement} element
+	 * @param {object} options
+	 * @memberof SuperImportant
+	 */
 	constructor(element, options) {
 
 		// if no node dom has been passed in, error
@@ -36,7 +36,7 @@ export default class SuperImportant {
 	}
 
 	/**
-	 *
+	 * Handle the window scroll event
 	 * @function
 	 * @memberof SuperImportant
 	 */
@@ -55,6 +55,12 @@ export default class SuperImportant {
 		this.$el.css(this._getStyles(degrees));
 	}
 
+	/**
+	 * Create the styling to be applied to the element
+	 * @param {number} degrees
+	 * @returns {object}
+	 * @memberof SuperImportant
+	 */
 	_getStyles(degrees) {
 		return {
 			display: "inline-block",

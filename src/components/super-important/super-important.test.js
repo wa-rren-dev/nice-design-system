@@ -22,7 +22,8 @@ describe("superImportant", function() {
 
 	afterEach(function() {
 		sandbox.restore();
-		$(window).off(".superimportant");
+		// remove all event handlers after each pass
+		$(window).off();
 	});
 
 	describe("jQuery integration", function() {
@@ -31,11 +32,10 @@ describe("superImportant", function() {
 		});
 
 		it("plugin returns element", function() {
-			$el
-				.superimportant()
-				.should.be.an.instanceOf($)
-				.and.equal($el)
-				.and.have.property("length", 1);
+			$el.superimportant()
+			.should.be.an.instanceOf($)
+			.and.equal($el)
+			.and.have.property("length", 1);
 		});
 	});
 
@@ -71,31 +71,64 @@ describe("superImportant", function() {
 		});
 	});
 
-	it("handleScroll is called on window scroll event if ultra is true", function() {
-		// Arrange
-		let handleScroll = sandbox.spy(SuperImportant.prototype, "_handleScroll");
-		new SuperImportant($el, {ultra: true});
-		handleScroll.reset();
-		// Act
-		$(window).trigger("scroll");
-		// Assert
-		handleScroll.should.be.calledOnce;
+	describe("handleScroll", function() {
+		it("handleScroll is called on window scroll event if ultra is true", function() {
+			// Arrange
+			let handleScroll = sandbox.spy(SuperImportant.prototype, "_handleScroll");
+			new SuperImportant($el, {ultra: true});
+			handleScroll.reset();
+			// Act
+			$(window).trigger("scroll");
+			// Assert
+			handleScroll.should.be.calledOnce;
+		});
+
+		it("handleScroll is not attached to window if ultra is false", function() {
+			// Arrange
+			should.not.exist($._data(window, "events")); // there's nothing attached to the window
+			new SuperImportant($el);
+			// Act
+			// Assert
+			should.not.exist($._data(window, "events")); // there still isn't
+		});
 	});
 
-	it("handleScroll is not attached to window if ultra is false", function() {
-		// Arrange
-		should.not.exist($._data(window, "events"));
-		new SuperImportant($el);
-		// Act
-		// Assert
-		should.not.exist($._data(window, "events"));
+	describe("ultra option is gathered if set", function () {
+
+		it("options are empty if ultra not set", function () {
+			var important = new SuperImportant($el);
+			important.options.should.not.have.property("ultra");
+		});
+
+		it("options contain ultra property if set to true", function(){
+			var important = new SuperImportant($el, {ultra: true});
+			important.options.should.have.property("ultra", true);
+		});
+
 	});
 
+	describe("applySpinStyling", function(){
 
+		beforeEach(function(){
+			sandbox.restore();
+			console.log("restoring");
+		});
+
+		it("applies the styling to the element if scroll is < 360", function () {
+			new SuperImportant($el, {ultra: true});
+			window.scrollY = 101;
+			console.log("style:", $el[0].style.transform);
+			console.log("scroll:", window.scrollY);
+			$el[0].style.transform.should.equal("rotate(100deg)");
+		});
+
+		// it("applies the styling to the element if scroll is > 360", function () {
+		// 	new SuperImportant($el, {ultra: true});
+		// 	$(window).scrollY = 360;
+		// 	console.log($el[0].style.transform);
+		// 	$el[0].style.transform.should.equal("rotate(0deg)");
+		// });
+	});
 
 });
 
-// questions:
-// why won't my renderComponent work?! (line 21)
-// how is JSDOM putting the this individual component in it's virtual page?
-// what is line 40 proving?
