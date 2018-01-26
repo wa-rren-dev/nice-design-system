@@ -19,10 +19,10 @@ export default class SuperImportant {
 		// if no node dom has been passed in, error
 		if(!element) throw new Error ("Element must be non-null");
 
-		// confirm the passed-in element is a jQ object
+		// make it a jQ selection
 		this.$el = $(element);
 
-		// set up an initially empty object so it exists to check hasOwnProperty
+		// set up an initially empty object so it exists to check hasOwnProperty - is this a bit hacky?
 		this.options = Object.assign({}, options);
 
 		// if it is set to ultra
