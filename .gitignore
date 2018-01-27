@@ -34,3 +34,5 @@ temp
 # VScode
 /.vscode/settings.json
 .eslintrc.js
+# Webstorm
+.idea
