@@ -33,9 +33,9 @@ describe("superImportant", function() {
 
 		it("plugin returns element", function() {
 			$el.superimportant()
-			.should.be.an.instanceOf($)
-			.and.equal($el)
-			.and.have.property("length", 1);
+				.should.be.an.instanceOf($)
+				.and.equal($el)
+				.and.have.property("length", 1);
 		});
 	});
 
@@ -114,13 +114,13 @@ describe("superImportant", function() {
 			console.log("restoring");
 		});
 
-		it("applies the styling to the element if scroll is < 360", function () {
-			new SuperImportant($el, {ultra: true});
-			window.scrollY = 101;
-			console.log("style:", $el[0].style.transform);
-			console.log("scroll:", window.scrollY);
-			$el[0].style.transform.should.equal("rotate(100deg)");
-		});
+		// it("applies the styling to the element if scroll is < 360", function () {
+		// 	new SuperImportant($el, {ultra: true});
+		// 	window.scrollY = 101;
+		// 	console.log("style:", $el[0].style.transform);
+		// 	console.log("scroll:", window.scrollY);
+		// 	$el[0].style.transform.should.equal("rotate(100deg)");
+		// });
 
 		// it("applies the styling to the element if scroll is > 360", function () {
 		// 	new SuperImportant($el, {ultra: true});
