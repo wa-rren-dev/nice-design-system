@@ -4,7 +4,7 @@
 import SuperImportant from "./super-important";
 import testHelpers from "../../../test/test-helpers";
 
-describe("superImportant", function() {
+describe.only("superImportant", function() {
 	var sandbox, $el, html;
 
 	before(function() {
@@ -103,18 +103,29 @@ describe("superImportant", function() {
 	});
 
 	describe("applySpinStyling", function() {
-		beforeEach(function() {
-			sandbox.restore();
-			console.log("restoring");
+		var element;
+
+		before(function() {
+			element = new SuperImportant($el, { ultra: true });
 		});
 
-		// it("applies the styling to the element if scroll is < 360", function () {
-		// 	new SuperImportant($el, {ultra: true});
-		// 	window.scrollY = 101;
-		// 	console.log("style:", $el[0].style.transform);
-		// 	console.log("scroll:", window.scrollY);
-		// 	$el[0].style.transform.should.equal("rotate(100deg)");
-		// });
+		beforeEach(function() {
+			console.log("before!", window.scrollY);
+		});
+
+		afterEach(function() {
+			console.log("after!", window.scrollY);
+		});
+
+		it("applies the supplied rotation styling to the element on scroll 1", function() {
+			window.scrollY = 1;
+			element.$el[0].style.transform.should.equal("rotate(1deg)");
+		});
+
+		it("applies the supplied rotation styling to the element on scroll 2", function() {
+			window.scrollY = 2;
+			element.$el[0].style.transform.should.equal("rotate(2deg)");
+		});
 
 		// it("applies the styling to the element if scroll is > 360", function () {
 		// 	new SuperImportant($el, {ultra: true});
