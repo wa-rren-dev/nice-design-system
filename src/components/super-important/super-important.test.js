@@ -4,7 +4,7 @@
 import SuperImportant from "./super-important";
 import testHelpers from "../../../test/test-helpers";
 
-describe.only("superImportant", function() {
+describe("superImportant", function() {
 	var sandbox, $el, html;
 
 	before(function() {
@@ -103,35 +103,20 @@ describe.only("superImportant", function() {
 	});
 
 	describe("applySpinStyling", function() {
-		var element;
+		var important;
 
-		before(function() {
-			element = new SuperImportant($el, { ultra: true });
-		});
-
-		beforeEach(function() {
-			console.log("before!", window.scrollY);
-		});
-
-		afterEach(function() {
-			console.log("after!", window.scrollY);
-		});
-
-		it("applies the supplied rotation styling to the element on scroll 1", function() {
+		it("applies the supplied rotation styling to the element if scroll < 360", function() {
+			important = new SuperImportant($el, { ultra: true });
 			window.scrollY = 1;
-			element.$el[0].style.transform.should.equal("rotate(1deg)");
+			$(window).scroll();
+			important.$el[0].style.transform.should.equal("rotate(1deg)");
 		});
 
-		it("applies the supplied rotation styling to the element on scroll 2", function() {
-			window.scrollY = 2;
-			element.$el[0].style.transform.should.equal("rotate(2deg)");
+		it("applies the supplied rotation styling to the element if scroll >= 360", function() {
+			important = new SuperImportant($el, { ultra: true });
+			window.scrollY = 365;
+			$(window).scroll();
+			important.$el[0].style.transform.should.equal("rotate(5deg)");
 		});
-
-		// it("applies the styling to the element if scroll is > 360", function () {
-		// 	new SuperImportant($el, {ultra: true});
-		// 	$(window).scrollY = 360;
-		// 	console.log($el[0].style.transform);
-		// 	$el[0].style.transform.should.equal("rotate(0deg)");
-		// });
 	});
 });
