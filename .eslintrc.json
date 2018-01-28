@@ -1,8 +1,7 @@
 {
-	"extends": "@nice-digital/eslint-config/es6-flow",
-	"rules": {
-		"object-curly-spacing": ["error", "always"],
-		"template-curly-spacing": ["error", "always"],
-		"newline-per-chained-call": ["error", { "ignoreChainWithDepth": 1 }]
-	}
+  "extends": "@nice-digital/eslint-config/es6-flow",
+  "rules": {
+    "object-curly-spacing": ["error", "always"],
+    "template-curly-spacing": ["error", "always"]
+  }
 }
