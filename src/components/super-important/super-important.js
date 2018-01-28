@@ -15,9 +15,8 @@ export default class SuperImportant {
 	 * @memberof SuperImportant
 	 */
 	constructor(element, options) {
-
 		// if no node dom has been passed in, error
-		if(!element) throw new Error ("Element must be non-null");
+		if (!element) throw new Error("Element must be non-null");
 
 		// make it a jQ selection
 		this.$el = $(element);
@@ -29,7 +28,8 @@ export default class SuperImportant {
 		if (this.options.ultra) {
 			// when the window scrolls, spin the element by the scroll position
 			// $(window).on("scroll", this._scrollSpin(this.$el));
-			$(window).on("scroll.superimportant", $.proxy(this._handleScroll, this));
+			$(window)
+				.on("scroll.superimportant", $.proxy(this._handleScroll, this));
 		} else {
 			return;
 		}
@@ -50,7 +50,7 @@ export default class SuperImportant {
 	 * @argument number degrees
 	 * @memberof SuperImportant
 	 */
-	_applySpinStyling(degrees){
+	_applySpinStyling(degrees) {
 		// apply the styles
 		this.$el.css(this._getStyles(degrees));
 	}
@@ -64,7 +64,7 @@ export default class SuperImportant {
 	_getStyles(degrees) {
 		return {
 			display: "inline-block",
-			transform: `rotate(${degrees}deg)`
+			transform: `rotate(${ degrees }deg)`
 		};
 	}
 
@@ -74,7 +74,7 @@ export default class SuperImportant {
 	 * @returns {number} Calculated rotation
 	 * @memberof SuperImportant
 	 */
-	_calculateDegrees(scroll){
+	_calculateDegrees(scroll) {
 		return scroll % 360;
 	}
 }

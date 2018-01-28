@@ -5,9 +5,7 @@ import SuperImportant from "./super-important";
 import testHelpers from "../../../test/test-helpers";
 
 describe("superImportant", function() {
-	var sandbox,
-		$el,
-		html;
+	var sandbox, $el, html;
 
 	before(function() {
 		html = testHelpers.renderComponent("super-important", {
@@ -32,16 +30,16 @@ describe("superImportant", function() {
 		});
 
 		it("plugin returns element", function() {
-			$el.superimportant()
+			$el
+				.superimportant()
 				.should.be.an.instanceOf($)
 				.and.equal($el)
 				.and.have.property("length", 1);
 		});
 	});
 
-	describe("calculateDegrees", function(){
-
-		it("returns original scroll value when scroll is less than 360", function(){
+	describe("calculateDegrees", function() {
+		it("returns original scroll value when scroll is less than 360", function() {
 			// arrange
 			var important = new SuperImportant($el);
 			// act
@@ -50,7 +48,7 @@ describe("superImportant", function() {
 			degrees.should.equal(99);
 		});
 
-		it("return a scroll value of less than 360 when scroll value is > 360", function(){
+		it("return a scroll value of less than 360 when scroll value is > 360", function() {
 			// arrange
 			var important = new SuperImportant($el);
 			// act
@@ -59,8 +57,7 @@ describe("superImportant", function() {
 			degrees.should.equal(1);
 		});
 	});
-
-	describe("getStyles", function(){
+	describe("getStyles", function() {
 		it("returns an object with a rotate transform of the supplied degree", () => {
 			// arrange
 			var important = new SuperImportant($el);
@@ -75,7 +72,7 @@ describe("superImportant", function() {
 		it("handleScroll is called on window scroll event if ultra is true", function() {
 			// Arrange
 			let handleScroll = sandbox.spy(SuperImportant.prototype, "_handleScroll");
-			new SuperImportant($el, {ultra: true});
+			new SuperImportant($el, { ultra: true });
 			handleScroll.reset();
 			// Act
 			$(window).trigger("scroll");
@@ -93,23 +90,20 @@ describe("superImportant", function() {
 		});
 	});
 
-	describe("ultra option is gathered if set", function () {
-
-		it("options are empty if ultra not set", function () {
+	describe("ultra option is gathered if set", function() {
+		it("options are empty if ultra not set", function() {
 			var important = new SuperImportant($el);
 			important.options.should.not.have.property("ultra");
 		});
 
-		it("options contain ultra property if set to true", function(){
-			var important = new SuperImportant($el, {ultra: true});
+		it("options contain ultra property if set to true", function() {
+			var important = new SuperImportant($el, { ultra: true });
 			important.options.should.have.property("ultra", true);
 		});
-
 	});
 
-	describe("applySpinStyling", function(){
-
-		beforeEach(function(){
+	describe("applySpinStyling", function() {
+		beforeEach(function() {
 			sandbox.restore();
 			console.log("restoring");
 		});
@@ -129,6 +123,4 @@ describe("superImportant", function() {
 		// 	$el[0].style.transform.should.equal("rotate(0deg)");
 		// });
 	});
-
 });
-
