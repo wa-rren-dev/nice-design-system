@@ -105,18 +105,10 @@ describe("superImportant", function() {
 	describe("applySpinStyling", function() {
 		var important;
 
-		it("applies the supplied rotation styling to the element if scroll < 360", function() {
+		it("applies the supplied rotation styling to the element", function() {
 			important = new SuperImportant($el, { ultra: true });
-			window.scrollY = 1;
-			$(window).scroll();
-			important.$el[0].style.transform.should.equal("rotate(1deg)");
-		});
-
-		it("applies the supplied rotation styling to the element if scroll >= 360", function() {
-			important = new SuperImportant($el, { ultra: true });
-			window.scrollY = 365;
-			$(window).scroll();
-			important.$el[0].style.transform.should.equal("rotate(5deg)");
+			important._applySpinStyling(99);
+			important.$el[0].style.transform.should.equal(important._getStyles(99).transform);
 		});
 	});
 });
